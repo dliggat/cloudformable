@@ -1,0 +1,36 @@
+{
+  "LambdaFunction": {
+    "Value": {
+      "Ref": "{{ lambda-function.id }}"
+    }
+  },
+  "LambdaFunctionARN": {
+    "Description": "ARN of the created Lambda function",
+    "Value": {
+      "Fn::GetAtt": [
+        "{{ lambda-function.id }}",
+        "Arn"
+      ]
+    }
+  },
+  "LambdaExecutionPolicy": {
+    "Value": {
+      "Ref": "{{ lambda-execution-policy.id }}"
+    }
+  },
+  "LambdaExecutionRole": {
+    "Value": {
+      "Ref": "{{ lambda-execution-role.id }}"
+    }
+  },
+  "S3Bucket": {
+    "Value": {
+      "Ref": "{{ s3-bucket.id }}"
+    }
+  },
+  "S3BucketPolicy": {
+    "Value": {
+      "Ref": "{{ s3-bucket-policy.id }}"
+    }
+  }
+}

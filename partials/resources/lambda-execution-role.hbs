@@ -1,0 +1,28 @@
+---
+id: "MyLambdaExecutionRole"
+---
+{
+  "Type": "AWS::IAM::Role",
+  "Metadata" : {
+    "Comment": "The role under which the lambda function executes."
+  },
+  "Properties": {
+    "AssumeRolePolicyDocument": {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Principal": {
+            "Service": [
+              "lambda.amazonaws.com"
+            ]
+          },
+          "Action": [
+            "sts:AssumeRole"
+          ]
+        }
+      ]
+    },
+    "Path": "/"
+  }
+}

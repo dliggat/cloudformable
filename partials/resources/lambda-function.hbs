@@ -1,0 +1,45 @@
+---
+id: "MyLambdaFunction"
+timeout: 180
+runtime: "nodejs"
+handler: "index.handler"
+defaultMemory: 256
+comment: "This is a lambda function"
+---
+{
+  "Type": "AWS::Lambda::Function",
+  "Metadata" : {
+    "Comment": "{{ lambda-function.comment }}"
+  },
+  "DependsOn": [
+    "{{ lambda-execution-role.id }}",
+    "{{ lambda-execution-policy.id }}"
+  ],
+  "Properties": {
+    "Code": {
+      "ZipFile": {
+        "Fn::Join": [
+          "",
+          [
+            "exports.handler = function(event, context) {",
+            "   console.log('This function is a no-op and will be overwritten on deploy.');",
+            "   context.done();",
+            "};"
+          ]
+        ]
+      }
+    },
+    "Role": {
+      "Fn::GetAtt": [
+        "{{ lambda-execution-role.id }}",
+        "Arn"
+      ]
+    },
+    "Timeout": {{ lambda-function.timeout }},
+    "Handler": "{{ lambda-function.handler }}",
+    "Runtime": "{{ lambda-function.runtime }}",
+    "MemorySize": {
+      "Ref": "MemorySize"
+    }
+  }
+}

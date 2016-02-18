@@ -1,0 +1,61 @@
+---
+id: "MyLambdaExecutionPolicy"
+policyName: "lAMBDArOLEpOLICY"
+---
+{
+  "DependsOn": [
+    "{{ lambda-execution-role.id }}"
+  ],
+  "Type": "AWS::IAM::Policy",
+  "Metadata" : {
+    "Comment": "The IAM policy for the lambda role: allows the function to interact with things in AWS."
+  },
+  "Properties": {
+    "PolicyName": "{{ lambda-execution-policy.policyName }}",
+    "Roles": [
+      {
+        "Ref": "{{ lambda-execution-role.id }}"
+      }
+    ],
+    "PolicyDocument": {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Action": [
+            "s3:*"
+          ],
+          "Resource": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:aws:s3:::",
+                {
+                  "Ref": "{{ s3-bucket.id }}"
+                }
+              ]
+            ]
+          }
+        },
+        {
+          "Effect": "Allow",
+          "Action": [
+            "s3:*"
+          ],
+          "Resource": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:aws:s3:::",
+                {
+                  "Ref": "{{ s3-bucket.id }}"
+                },
+                "/*"
+              ]
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

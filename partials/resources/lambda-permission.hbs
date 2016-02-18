@@ -1,0 +1,17 @@
+---
+id: "MyLambdaPermission"
+grantPrincipal: "ses.amazonaws.com"
+---
+{
+  "Type": "AWS::Lambda::Permission",
+  "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+      "Fn::GetAtt": [
+        "{{ lambda-function.id }}",
+        "Arn"
+      ]
+    },
+    "Principal": "{{ lambda-permission.grantPrincipal }}"
+  }
+}

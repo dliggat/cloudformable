@@ -1,0 +1,61 @@
+---
+id: "MyS3BucketPolicy"
+---
+{
+  "Type": "AWS::S3::BucketPolicy",
+  "Metadata" : {
+    "Comment": "Bucket policy that applies to the created bucket."
+  },
+  "Properties": {
+    "Bucket": {
+      "Ref": "{{ s3-bucket.id }}"
+    },
+    "PolicyDocument": {
+      "Version": "2012-10-17",
+      "Statement": [
+        {  {{!-- This refers to the original object. --}}
+          "Sid": "Sid",
+          "Action": [
+            "s3:GetObject"
+          ],
+          "Effect": "Allow",
+          "Resource": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:aws:s3:::",
+                {
+                  "Ref": "{{ s3-bucket.id }}"
+                },
+                "/*"
+              ]
+            ]
+          },
+          "Principal": "*"
+        },
+        {
+          "Effect": "Allow",
+          "Principal": {
+            "Service": "ses.amazonaws.com"
+          },
+          "Action": [
+            "s3:PutObjectAcl",
+            "s3:PutObject"
+          ],
+          "Resource": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:aws:s3:::",
+                {
+                  "Ref": "{{ s3-bucket.id }}"
+                },
+                "/*"
+              ]
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{{!--
+Template anatomy documentation available at:
+http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-anatomy.html
+ --}}
+
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+
+  "Description": "{{ about.description }}",
+
+  "Metadata": {
+    "CommitHash": "{{ commitHash }}",
+    "CommitComment": "{{ commitComment }}"
+  },
+
+  "Parameters": {{> parameters }},
+
+  {{!-- Unused for now; uncomment and add a partial in `_partials` to enable. --}}
+  {{!-- "Mappings": {{> mappings }}, --}}
+  {{!-- "Conditions": {{> conditions }}, --}}
+
+  "Resources": {{> resources }},
+
+  "Outputs": {{> outputs }}
+}
