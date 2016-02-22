@@ -8,6 +8,7 @@ This repository is a starting point for static generation of [CloudFormation][cf
   * `npm install -g grunt-cli`
 3. Clone this repo:
   * `git clone https://github.com/dliggat/cloudformable`
+  * `cd cloudformable`
 4. Install the dependencies from this repo's `package.json`:
   * `npm install`
 5. Customize to your situation:
