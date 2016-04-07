@@ -34,6 +34,14 @@ module.exports = function(grunt) {
           endWithNewline: true
         }
       }
+    },
+    mochaTest: {
+      test: {
+        options: {
+          reporter: 'spec'
+        },
+        src: ['test/**/*.js']
+      }
     }
   });
 
@@ -41,6 +49,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-jsbeautifier');
   grunt.loadNpmTasks('grunt-assemble');
+  grunt.loadNpmTasks('grunt-mocha-test');
 
   grunt.registerTask('render', ['assemble', 'jsbeautifier']);
 };
