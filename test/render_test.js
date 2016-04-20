@@ -2,7 +2,6 @@ require('shelljs/global');
 
 var assert  = require('assert');
 var fs      = require('fs');
-var grunt   = require('grunt');
 
 var filename = '_output/stack.template';
 
