@@ -8,12 +8,13 @@ This repository is a starting point for static generation of [CloudFormation][cf
   * `npm install -g grunt-cli`
 3. Clone this repo:
   * `git clone https://github.com/dliggat/cloudformable`
+  * `cd cloudformable`
 4. Install the dependencies from this repo's `package.json`:
   * `npm install`
 5. Customize to your situation:
   * Update `data` with static data
   * Add custom code in `helpers`
-  * Add, remove, or delete `.hbs` files in `partials/resources`
+  * Add, modify, or delete `.hbs` files in `partials/resources`
   * Update `outputs.hbs` and `resources.hbs` accordingly
 6. Generate the final CloudFormation artifact(s):
   * `grunt render`
